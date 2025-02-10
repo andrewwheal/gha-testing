@@ -22,6 +22,8 @@ jobs:
           echo "random_env=$random_env"
 
   job2:
+    runs-on: ubuntu-latest
+    steps:
       - name: Use env var in another job
         needs: [ job1 ]
         run: |
