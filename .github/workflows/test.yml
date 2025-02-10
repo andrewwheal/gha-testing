@@ -1,23 +1,27 @@
-name: Testing GHA
+name: Testing dynamically set env vars
 
 on:
   push:
 
 jobs:
-  test:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Random status
+      - name: Set env var
+        id: set
         run: |
-          exit_code=$(($RANDOM % 2))
-          echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
-          echo "::notice::Random exit code: $exit_code"
-          exit $exit_code
-      - name: Next step
-        run: echo "Next step"
-      - name: On Success
-        if: success()
-        run: echo "On success"
-      - name: On Failure
-        if: failure()
-        run: echo "On failure"
+          random_number=$(($RANDOM % 10))
+          echo "random_output=$random_number" >> $GITHUB_OUTPUT
+          echo "random_env=$random_number" >> $GITHUB_ENV
+          echo "::notice::Random number: $random_number"
+      - name: Use env var in same job
+        run: |
+          echo "random_output=${{ steps.set.outputs.random_output }}"
+          echo "random_env=$random_env"
+
+  job2:
+      - name: Use env var in another job
+        needs: [ job1 ]
+        run: |
+          echo "random_output=${{ needs.job1.steps.set.outputs.random_output }}"
+          echo "random_env=$random_env"
