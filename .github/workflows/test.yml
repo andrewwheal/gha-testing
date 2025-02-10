@@ -6,6 +6,8 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      random_output: ${{ steps.set.outputs.random_output }}
     steps:
       - name: Set env var
         id: set
@@ -23,5 +25,5 @@ jobs:
       - name: Use env var in another job
         needs: [ job1 ]
         run: |
-          echo "random_output=${{ needs.job1.steps.set.outputs.random_output }}"
+          echo "random_output=${{ needs.job1.outputs.random_output }}"
           echo "random_env=$random_env"
