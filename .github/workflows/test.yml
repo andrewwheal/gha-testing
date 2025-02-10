@@ -23,9 +23,9 @@ jobs:
 
   job2:
     runs-on: ubuntu-latest
+    needs: [ job1 ]
     steps:
       - name: Use env var in another job
-        needs: [ job1 ]
         run: |
           echo "random_output=${{ needs.job1.outputs.random_output }}"
           echo "random_env=$random_env"
