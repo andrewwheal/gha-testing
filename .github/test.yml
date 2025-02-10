@@ -1,0 +1,23 @@
+name: Testing GHA
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Random status
+        run: |
+          exit_code=$(($RANDOM % 2))
+          echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
+          echo "::notice::Random exit code: $exit_code"
+          exit $exit_code
+      - name: Next step
+        run: echo "Next step"
+      - name: On Success
+        if: success()
+        run: echo "On success"
+      - name: On Failure
+        if: failure()
+        run: echo "On failure"
