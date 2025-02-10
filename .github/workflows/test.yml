@@ -3,6 +3,10 @@ name: Testing dynamically set env vars
 on:
   push:
 
+env:
+  test1: 1
+  test2: "a-${{ env.test1 }}"
+
 jobs:
   job1:
     runs-on: ubuntu-latest
