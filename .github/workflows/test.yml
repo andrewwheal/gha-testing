@@ -4,6 +4,12 @@ on:
   pull_request:
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        run: echo "Setup"
+
   deploy-be:
     runs-on: ubuntu-latest
     steps:
