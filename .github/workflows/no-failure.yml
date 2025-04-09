@@ -1,0 +1,10 @@
+run-name: Rollback testing - no failure
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    with:
+      failure: none
