@@ -10,7 +10,7 @@ jobs:
       - name: Setup
         run: |
           echo "Setup"
-          exit 0
+          exit 1
 
   deploy-be:
     runs-on: ubuntu-latest
