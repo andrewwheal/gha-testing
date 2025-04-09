@@ -15,7 +15,7 @@ jobs:
       - name: Setup
         run: |
           echo "Setup"
-          [ "$failure" = "setup" ] && exit 1
+          [ "$failure" = "setup" ] && exit 1 || exit 0
 
   deploy-be:
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
       - name: Step 2
         run: |
           echo "Step 2"
-          [ "$failure" = "deploy-be" ] && exit 1
+          [ "$failure" = "deploy-be" ] && exit 1 || exit 0
       - name: Step 3
         run: echo "Step 3"
 
@@ -43,7 +43,7 @@ jobs:
       - name: Step 2
         run: |
           echo "Step 2"
-          [ "$failure" = "deploy-fe" ] && exit 1
+          [ "$failure" = "deploy-fe" ] && exit 1 || exit 0
       - name: Step 3
         run: echo "Step 3"
 
@@ -57,7 +57,7 @@ jobs:
         run: |
           echo "Restarted"
           sleep 10
-          [ "$failure" = "restart" ] && exit 1
+          [ "$failure" = "restart" ] && exit 1 || exit 0
 
   rollback:
     runs-on: ubuntu-latest
