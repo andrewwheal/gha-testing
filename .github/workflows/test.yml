@@ -47,16 +47,6 @@ jobs:
           echo "Restarted"
           exit 0
 
-  statuses:
-    runs-on: ubuntu-latest
-    needs: [ "setup", "deploy-be", "deploy-fe", "restart" ]
-    steps:
-      - run: |
-          echo "Setup: ${{ needs.setup.result }}"
-          echo "Deploy BE: ${{ needs.deploy-be.result }}"
-          echo "Deploy FE: ${{ needs.deploy-fe.result }}"
-          echo "Restart: ${{ needs.restart.result }}"
-
   rollback:
     runs-on: ubuntu-latest
     needs: [ "deploy-be", "deploy-fe", "restart" ]
@@ -64,3 +54,15 @@ jobs:
     steps:
       - name: Rollback
         run: echo "Rollback"
+
+  statuses:
+    runs-on: ubuntu-latest
+    needs: [ "setup", "deploy-be", "deploy-fe", "restart", "rollback" ]
+    if: always()
+    steps:
+      - run: |
+          echo "Setup: ${{ needs.setup.result }}"
+          echo "Deploy BE: ${{ needs.deploy-be.result }}"
+          echo "Deploy FE: ${{ needs.deploy-fe.result }}"
+          echo "Restart: ${{ needs.restart.result }}"
+          echo "Rollback: ${{ needs.rollback.result }}"
