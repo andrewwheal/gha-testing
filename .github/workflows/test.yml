@@ -1,56 +1,69 @@
 name: Rollback testing
 on:
-  push:
-  pull_request:
+  workflow_call:
+    inputs:
+      failure:
+        type: string
+        required: true
 
 jobs:
   setup:
     runs-on: ubuntu-latest
+    env:
+      failure: ${{ inputs.failure }}
     steps:
       - name: Setup
         run: |
           echo "Setup"
-          exit 0
+          [ "$failure" = "setup" ] && exit 1
 
   deploy-be:
     runs-on: ubuntu-latest
     needs: [ "setup" ]
+    env:
+      failure: ${{ inputs.failure }}
     steps:
       - name: Step 1
         run: echo "Step 1"
       - name: Step 2
         run: |
           echo "Step 2"
-          sleep 10
-          exit 0
+          [ "$failure" = "deploy-be" ] && exit 1
       - name: Step 3
         run: echo "Step 3"
 
   deploy-fe:
     runs-on: ubuntu-latest
     needs: [ "setup" ]
+    env:
+      failure: ${{ inputs.failure }}
     steps:
       - name: Step 1
         run: echo "Step 1"
       - name: Step 2
         run: |
           echo "Step 2"
-          exit 0
+          [ "$failure" = "deploy-fe" ] && exit 1
       - name: Step 3
         run: echo "Step 3"
 
   restart:
     runs-on: ubuntu-latest
     needs: [ "deploy-be", "deploy-fe" ]
+    env:
+      failure: ${{ inputs.failure }}
     steps:
       - name: Restart
         run: |
           echo "Restarted"
-          exit 0
+          sleep 10
+          [ "$failure" = "restart" ] && exit 1
 
   rollback:
     runs-on: ubuntu-latest
     needs: [ "deploy-be", "deploy-fe", "restart" ]
+    env:
+      failure: ${{ inputs.failure }}
     if: failure() && ( needs.deploy-be.result == 'failure' || needs.deploy-fe.result == 'failure' || needs.restart.result == 'failure' )
     steps:
       - name: Rollback
