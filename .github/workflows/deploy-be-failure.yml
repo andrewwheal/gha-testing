@@ -1,0 +1,10 @@
+name: Rollback testing - deploy-be failure
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    with:
+      failure: deploy-be
