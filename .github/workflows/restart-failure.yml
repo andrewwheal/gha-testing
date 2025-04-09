@@ -1,4 +1,4 @@
-name: Rollback testing - restart failure
+run-name: Rollback testing - restart failure
 on:
   push:
   pull_request:

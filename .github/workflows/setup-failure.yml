@@ -1,4 +1,4 @@
-name: Rollback testing - setup failure
+run-name: Rollback testing - setup failure
 on:
   push:
   pull_request:

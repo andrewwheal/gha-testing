@@ -1,4 +1,4 @@
-name: Rollback testing - deploy-fe failure
+run-name: Rollback testing - deploy-fe failure
 on:
   push:
   pull_request:
