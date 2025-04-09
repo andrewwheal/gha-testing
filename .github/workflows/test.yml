@@ -21,7 +21,8 @@ jobs:
       - name: Step 2
         run: |
           echo "Step 2"
-          exit 1
+          sleep 10
+          exit 0
       - name: Step 3
         run: echo "Step 3"
 
