@@ -61,7 +61,8 @@ jobs:
     if: always()
     steps:
       - run: |
-          echo -e "::notice::Setup: ${{ needs.setup.result }}\nDeploy BE: ${{ needs.deploy-be.result }}"
-          echo "Deploy FE: ${{ needs.deploy-fe.result }}"
-          echo "Restart: ${{ needs.restart.result }}"
-          echo "Rollback: ${{ needs.rollback.result }}"
+          echo "::notice::Setup: ${{ needs.setup.result }}"
+          echo "::notice::Deploy BE: ${{ needs.deploy-be.result }}"
+          echo "::notice::Deploy FE: ${{ needs.deploy-fe.result }}"
+          echo "::notice::Restart: ${{ needs.restart.result }}"
+          echo "::notice::Rollback: ${{ needs.rollback.result }}"
