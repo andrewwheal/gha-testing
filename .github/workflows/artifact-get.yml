@@ -2,6 +2,8 @@ name: Download Artifact
 
 on:
   workflow_dispatch:  # Allows manual trigger
+    inputs:
+      run-id:
   push:
     branches:
       - artifacts
@@ -14,6 +16,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artifact-test
+          run-id: ${{ inputs.run-id }}
 
       - name: List downloaded files
         run: ls -R
