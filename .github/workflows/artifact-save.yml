@@ -13,10 +13,10 @@ jobs:
       - name: Create test file
         run: |
           date -Isec >artifact_test.txt
-          echo "Run ID: $GITHUB_RUN_ID" >> test.txt
-          echo "Run Number: $GITHUB_RUN_NUMBER" >> test.txt
-          echo "Commit SHA: $GITHUB_SHA" >> test.txt
-          echo "Branch/Ref: $GITHUB_REF" >> test.txt
+          echo "Run ID: $GITHUB_RUN_ID" >> artifact_test.txt
+          echo "Run Number: $GITHUB_RUN_NUMBER" >> artifact_test.txt
+          echo "Commit SHA: $GITHUB_SHA" >> artifact_test.txt
+          echo "Branch/Ref: $GITHUB_REF" >> artifact_test.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v5
