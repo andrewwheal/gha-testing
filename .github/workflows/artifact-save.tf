@@ -3,8 +3,6 @@ name: Upload Artifact
 on:
   workflow_dispatch: # Allow manual trigger
   push:
-    branches:
-      - artifacts
 
 jobs:
   upload:

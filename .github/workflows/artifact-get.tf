@@ -3,8 +3,6 @@ name: Download Artifact
 on:
   workflow_dispatch:  # Allows manual trigger
   push:
-    branches:
-      - artifacts
 
 jobs:
   download:
