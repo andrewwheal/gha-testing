@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
   with-repo:
     runs-on: ubuntu-latest
