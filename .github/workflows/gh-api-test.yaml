@@ -1,0 +1,17 @@
+name: Testing GH API
+
+on:
+  workflow-dispatch:
+  push:
+
+jobs:
+  with-repo:
+    uses: ubuntu-latest
+    steps:
+      - uses: actions/checkout
+      - runs: gh run list
+
+  without-repo:
+    uses: ubuntu-latest
+    steps:
+      - runs: gh run list --repo ${{ github.repository }}
