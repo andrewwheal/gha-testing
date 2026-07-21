@@ -8,6 +8,6 @@ jobs:
   ls-remote:
     runs-on: ubuntu-latest
     steps:
-      - run: git ls-remote "https://github-actions:${{secrets.GITHUB_TOKEN}}:github.com/${{github.repository}}.git"
-      - run: git ls-remote "//github-actions:${{secrets.GITHUB_TOKEN}}:github.com/${{github.repository}}.git"
-      - run: git ls-remote "github-actions:${{secrets.GITHUB_TOKEN}}:github.com/${{github.repository}}.git"
+      - run: git ls-remote "https://github-actions:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git"
+      - run: git ls-remote "//github-actions:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git"
+      - run: git ls-remote "github-actions:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git"
