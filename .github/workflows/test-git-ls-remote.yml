@@ -1,0 +1,12 @@
+name: Test git ls-remote
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  ls-remote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout
+      - run: git ls-remote origin
