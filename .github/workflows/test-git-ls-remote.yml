@@ -1,4 +1,4 @@
-name: Test git ls-remote
+name: Test remote
 
 on:
   push:
@@ -8,5 +8,5 @@ jobs:
   ls-remote:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v7
       - run: git ls-remote origin
