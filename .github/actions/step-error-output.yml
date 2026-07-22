@@ -1,0 +1,22 @@
+name: Step Error Output Composite Action
+
+inputs:
+  should_error:
+    required: false
+    type: string
+    default: ""
+
+outputs:
+  out:
+    value: ${{ steps.output.outputs.out }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: output
+      continue-on-error: true
+      env:
+        SHOULD_ERROR: ${{ inputs.should_error }}
+      run: |
+        [[ -n "$SHOULD_ERROR" ]]  && exit 1
+        echo "out=1" >>"$GITHUB_OUTPUT"
