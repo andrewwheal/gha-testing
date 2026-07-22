@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: output
+        continue-on-error: true
         run: |
           exit 1
           echo "out=1" >>"$GITHUB_OUTPUT"
