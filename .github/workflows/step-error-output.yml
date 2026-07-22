@@ -10,7 +10,7 @@ jobs:
     steps:
       - id: output
         continue-on-error: true
-        uses: ./.github/actions/step-error-output.yml
+        uses: ./.github/actions/step-error-output
         with:
           should_error: yes
       - id: use
@@ -21,7 +21,7 @@ jobs:
     steps:
       - id: output
         continue-on-error: true
-        uses: ./github/actions/step-error-output.yml
+        uses: ./github/actions/step-error-output
       - id: use
         run: |
           echo "${{steps.output.outputs.out || 'nope'}}"
