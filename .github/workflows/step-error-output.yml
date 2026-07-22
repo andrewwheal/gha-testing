@@ -16,3 +16,13 @@ jobs:
       - id: use
         run: |
           echo "${{steps.output.outputs.out || 'nope'}}"
+  step-output:
+    runs-on: ubuntu-latest
+    steps:
+      - id: output
+        continue-on-error: true
+        run: |
+          echo "out=1" >>"$GITHUB_OUTPUT"
+      - id: use
+        run: |
+          echo "${{steps.output.outputs.out || 'nope'}}"
