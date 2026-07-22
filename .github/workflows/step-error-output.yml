@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@master
       - id: output
         continue-on-error: true
-        uses: ./.github/actions/step-error-output@step-error-output
+        uses: ./.github/actions/step-error-output
         with:
           should_error: yes
       - id: use
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@master
       - id: output
         continue-on-error: true
-        uses: ./github/actions/step-error-output@step-error-output
+        uses: ./github/actions/step-error-output
       - id: use
         run: |
           echo "${{steps.output.outputs.out || 'nope'}}"
