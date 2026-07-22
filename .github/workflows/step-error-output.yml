@@ -8,6 +8,7 @@ jobs:
   step-error-output:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - id: output
         continue-on-error: true
         uses: ./.github/actions/step-error-output@step-error-output
@@ -19,6 +20,7 @@ jobs:
   step-output:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - id: output
         continue-on-error: true
         uses: ./github/actions/step-error-output@step-error-output
