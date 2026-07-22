@@ -1,0 +1,17 @@
+name: Output from erroring Step
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  step-error-output:
+    runs-on: ubuntu-latest
+    steps:
+      - id: output
+        run: |
+          exit 1
+          echo "out=1" >>"$GITHUB_OUTPUT"
+      - id: use
+        run: |
+          echo "${{steps.output.outputs.out || 'nope'}}"
