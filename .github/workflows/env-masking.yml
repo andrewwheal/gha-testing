@@ -6,10 +6,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: |
-                echo "SECRET_VALUE=super_secret" >>$GITHUB_ENV
+                SECRET_VALUE=$(base64 -d <<<'c3VwZXJfc2VjcmV0')
+                echo "SECRET_VALUE=${SECRET_VALUE}" >>$GITHUB_ENV
+                echo "::add-mask::${SECRET_VALUE}"
                 echo "PUBLIC_VALUE=public_info" >>$GITHUB_ENV
-            - run: |
-                echo "::add-mask::${{ env.SECRET_VALUE }}"
             - run: |
                 echo "This is a secret value: ${{ env.SECRET_VALUE }}"
                 echo "This is a public value: ${{ env.PUBLIC_VALUE }}"
