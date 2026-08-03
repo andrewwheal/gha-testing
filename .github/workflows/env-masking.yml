@@ -11,3 +11,5 @@ jobs:
             - run: |
                 echo "This is a secret value: ${{ env.SECRET_VALUE }}"
                 echo "This is a public value: ${{ env.PUBLIC_VALUE }}"
+            - run: |
+                echo "::add-mask::${{ env.SECRET_VALUE }}"
