@@ -19,4 +19,4 @@ jobs:
               run: |
                   echo "From secret: ${{ secrets.secret }}"
                   echo "From input: ${{ inputs.secret }}"
-                  echo "Status: super_secret_1"
+                  echo "Static: super_secret_2"
